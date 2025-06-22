@@ -93,17 +93,13 @@ async def like_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     ])
 
     msg = (
-        f"🎯 *Like Request*\n
-
-"
-        f"👤 *From:* {player_name}\n
-"
-        f"🆔 *UID:* `{uid}`\n
-"
-        f"🌍 *Region:* {region}\n
-"
-        f"⚠️ Verify within 10 minutes"
-    )
+        msg = (
+    f"🎯 *Like Request*\n\n"
+    f"👤 *From:* {player_name}\n"
+    f"🆔 *UID:* `{uid}`\n"
+    f"🌍 *Region:* IND\n"
+    f"⚠️ Verify within 10 minutes"
+)
     await update.message.reply_text(msg, reply_markup=keyboard, parse_mode='Markdown')
 
 async def givevip_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
