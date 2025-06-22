@@ -169,7 +169,7 @@ async def process_verified_likes(app: Application):
     f"❌ *API Error: Unable to process like*\n\n"
     f"🆔 *UID:* `{uid}`\n"
     f"📛 Error: {str(e)}"
-        )
+)
 
             await app.bot.send_message(
                 chat_id=user['chat_id'],
