@@ -154,20 +154,13 @@ async def process_verified_likes(app: Application):
                     result = "❌ Like failed or daily max limit reached."
                 else:
                     result = (
-                        f"✅ *Request Processed Successfully*\n
-
-"
-                        f"👤 *Player:* {player}\n
-"
-                        f"🆔 *UID:* `{uid}`\n
-"
-                        f"👍 *Likes Before:* {before}\n
-"
-                        f"✨ *Likes Added:* {added}\n
-"
-                        f"🇮🇳 *Total Likes Now:* {after}\n
-"
-                        f"⏰ *Processed At:* {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')}"\n
+    f"✅ *Request Processed Successfully*\n\n"
+    f"👤 *Player:* {player}\n"
+    f"🆔 *UID:* `{uid}`\n"
+    f"👍 *Likes Before:* {before}\n"
+    f"✨ *Likes Added:* {added}\n"
+    f"🇮🇳 *Total Likes Now:* {after}\n"
+    f"⏰ *Processed At:* {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')}"
                     )
                     profiles.update_one({"user_id": user_id}, {"$set": {"last_used": datetime.utcnow()}}, upsert=True)
 
