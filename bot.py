@@ -70,14 +70,7 @@ async def like_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # ✅ Check if user has completed verification via shortlink
     if not user_doc or not user_doc.get("verified"):
         await update.message.reply_text(
-            "🚫 You have not completed the verification yet!
-
-"
-            "🔗 Please use the shortlink provided earlier and complete the quiz/ad step.
-"
-            "📩 After that, you will be redirected to the bot and must click `/start <code>`.
-"
-            "✅ Once verified, send the same `/like` command again.",
+            ("🚫 You have not completed the verification yet!\n\n""🔗 Please use the shortlink provided earlier and complete the quiz/ad step.\n""📩 After that, you will be redirected to the bot and must click `/start <code>`.\n""✅ Once verified, send the same `/like` command again."),
             parse_mode='Markdown'
         )
         return
