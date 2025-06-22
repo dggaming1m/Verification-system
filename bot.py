@@ -91,31 +91,24 @@ async def like_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         added = api_resp.get("LikesGivenByAPI", 0)
 
         if added == 0:
-            result = (
-                "❌ *Like Failed*
+            result = """❌ *Like Failed*
 
-"
-                "🚫 It seems the like could not be processed.
-"
-                "💡 Possible Reasons:
-"
-                "- Daily limit reached
-"
-                "- Invalid UID or server
+🚫 It seems the like could not be processed.
+💡 Possible Reasons:
+- Daily limit reached
+- Invalid UID or server
 
-"
-                "⏳ Try again later or contact support if the issue persists."
-            )
+⏳ Try again later or contact support if the issue persists."""
         else:
             result = (
                 f"✅ *Like Sent Successfully!*
 
 "
-                f"👤 *Player:* {player_name}\n"
-                f"🆔 *UID:* `{uid}`\n"
-                f"👍 *Likes Before:* {before}\n"
-                f"✨ *Likes Added:* {added}\n"
-                f"🏆 *Total Likes Now:* {after}\n"
+                "👤 *Player:* {}\n".format(player_name)
+                "🆔 *UID:* `{}`\n".format(uid)
+                "👍 *Likes Before:* {}\n".format(before)
+                "✨ *Likes Added:* {}\n".format(added)
+                "🏆 *Total Likes Now:* {}\n".format(after)
                 "🕒 *Time:* {}".format(datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S"))
             )
 
@@ -127,8 +120,8 @@ async def like_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 "
             f"📛 An error occurred while trying to send likes.\n"
-            f"🧾 UID: `{uid}`\n"
-            f"⚠️ Error: `{str(e)}`"
+            "🧾 UID: `{}`\n".format(uid)
+            "⚠️ Error: `{}`".format(str(e))
         )
 
     
@@ -257,7 +250,7 @@ async def givevip_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     hours, remainder = divmod(remaining.seconds, 3600)
                     minutes = remainder // 60
                     result = (
-    f"❌ *Daily Limit Reached*\n\n"\n    f"⏳ Try again after: {hours}h {minutes}m"
+    f"❌ *Daily Limit Reached*\n\n"\n    "⏳ Try again after: {}h {minutes}m".format(hours)
 )
                     await app.bot.send_message(
                         chat_id=user['chat_id'],
@@ -283,16 +276,16 @@ async def givevip_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     result = "❌ Like failed or daily max limit reached."
                 else:
                     result = (
-    f"✅ *Request Processed Successfully*\n\n"\n    f"👤 *Player:* {player}\n"
-    f"🆔 *UID:* `{uid}`\n"\n    f"👍 *Likes Before:* {before}\n"
-    f"✨ *Likes Added:* {added}\n"\n    f"🇮🇳 *Total Likes Now:* {after}\n"
+    f"✅ *Request Processed Successfully*\n\n"\n    "👤 *Player:* {}\n".format(player)
+    "🆔 *UID:* `{}`\n".format(uid)\n    "👍 *Likes Before:* {}\n".format(before)
+    "✨ *Likes Added:* {}\n".format(added)\n    "🇮🇳 *Total Likes Now:* {}\n".format(after)
     "⏰ *Processed At:* {}".format(datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S"))
                     )
                     profiles.update_one({"user_id": user_id}, {"$set": {"last_used": datetime.utcnow()}}, upsert=True)
 
             except Exception as e:
                 result = (
-    f"❌ *API Error: Unable to process like*\n\n"\n    f"🆔 *UID:* `{uid}`\n"
+    f"❌ *API Error: Unable to process like*\n\n"\n    "🆔 *UID:* `{}`\n".format(uid)
     "📛 Error: {}".format(str(e))
 )
 
