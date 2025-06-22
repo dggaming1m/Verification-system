@@ -102,8 +102,7 @@ async def like_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         else:
             result = (
                 "✅ *Like Sent Successfully!*
-
-"
+                
                 "👤 *Player:* {}\n".format(player_name)
                 "🆔 *UID:* `{}`\n".format(uid)
                 "👍 *Likes Before:* {}\n".format(before)
