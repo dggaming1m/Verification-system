@@ -62,7 +62,8 @@ async def like_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
 
     try:
-        info = requests.get(PLAYER_INFO_API.format(uid=uid), timeout=5).json()
+        region = "ind"  # ya args[1] if you want dynamic region
+info = requests.get(PLAYER_INFO_API.format(uid=uid, region=region), timeout=5).json()
         player_name = info.get("name", f"Player-{uid[-4:]}")
         level = info.get("level", "?")
         rank = info.get("rank", "?")
@@ -147,7 +148,8 @@ async def process_verified_likes(app: Application):
                 api_resp = requests.get(LIKE_API_URL.format(uid=uid), timeout=10).json()
                 player = (
     api_resp.get("PlayerNickname") or
-    requests.get(PLAYER_INFO_API.format(uid=uid)).json().get("name") or
+    region = "ind"  # ya store karo DB me
+requests.get(PLAYER_INFO_API.format(uid=uid, region=region)).json().get("name") or
     f"Player-{uid[-4:]}"
                 )
                 before = api_resp.get("LikesbeforeCommand", 0)
