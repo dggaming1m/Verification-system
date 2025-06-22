@@ -165,10 +165,11 @@ async def process_verified_likes(app: Application):
                     profiles.update_one({"user_id": user_id}, {"$set": {"last_used": datetime.utcnow()}}, upsert=True)
 
             except Exception as e:
-                result = f"❌ *API Error: Unable to process like*\n
-
-🆔 *UID:* `{uid}`\n
-📛 Error: {str(e)}"\n
+                result = (
+    f"❌ *API Error: Unable to process like*\n\n"
+    f"🆔 *UID:* `{uid}`\n"
+    f"📛 Error: {str(e)}"
+        )
 
             await app.bot.send_message(
                 chat_id=user['chat_id'],
