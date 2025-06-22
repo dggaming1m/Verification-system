@@ -144,11 +144,11 @@ async def process_verified_likes(app: Application):
                     users.update_one({"_id": user['_id']}, {"$set": {"processed": True}})
                     continue
 
-            try:
-    info = requests.get(PLAYER_INFO_API.format(uid=uid, region=region), timeout=5).json()
-    player_name = info.get("name", f"Player-{uid[-4:]}")
-except:
-    player_name = f"Player-{uid[-4:]}"
+            result = (
+    f"✅ *Request Processed Successfully*\n\n"
+    f"👤 *Player:* {player_name}\n"
+    ...
+            )
     
                 before = api_resp.get("LikesbeforeCommand", 0)
                 after = api_resp.get("LikesafterCommand", 0)
