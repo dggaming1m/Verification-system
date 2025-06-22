@@ -93,7 +93,6 @@ async def like_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     ])
 
     msg = (
-        msg = (
     f"🎯 *Like Request*\n\n"
     f"👤 *From:* {player_name}\n"
     f"🆔 *UID:* `{uid}`\n"
