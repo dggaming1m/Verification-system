@@ -145,13 +145,10 @@ async def process_verified_likes(app: Application):
                     continue
 
             try:
-                api_resp = requests.get(LIKE_API_URL.format(uid=uid), timeout=10).json()
-                player = (
-    api_resp.get("PlayerNickname") or
-    region = "ind"  # ya store karo DB me
-requests.get(PLAYER_INFO_API.format(uid=uid, region=region)).json().get("name") or
-    f"Player-{uid[-4:]}"
-                )
+    info = requests.get(PLAYER_INFO_API.format(uid=uid, region=region), timeout=5).json()
+    player_name = info.get("name", f"Player-{uid[-4:]}")
+except:
+    player_name = f"Player-{uid[-4:]}"
                 before = api_resp.get("LikesbeforeCommand", 0)
                 after = api_resp.get("LikesafterCommand", 0)
                 added = api_resp.get("LikesGivenByAPI", 0)
