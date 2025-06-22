@@ -149,6 +149,7 @@ async def process_verified_likes(app: Application):
     player_name = info.get("name", f"Player-{uid[-4:]}")
 except:
     player_name = f"Player-{uid[-4:]}"
+    
                 before = api_resp.get("LikesbeforeCommand", 0)
                 after = api_resp.get("LikesafterCommand", 0)
                 added = api_resp.get("LikesGivenByAPI", 0)
