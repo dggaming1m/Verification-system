@@ -145,7 +145,11 @@ async def process_verified_likes(app: Application):
 
             try:
                 api_resp = requests.get(LIKE_API_URL.format(uid=uid), timeout=10).json()
-                player = api_resp.get("PlayerNickname", f"Player-{uid[-4:]}")
+                player = (
+    api_resp.get("PlayerNickname") or
+    requests.get(PLAYER_INFO_API.format(uid=uid)).json().get("name") or
+    f"Player-{uid[-4:]}"
+                )
                 before = api_resp.get("LikesbeforeCommand", 0)
                 after = api_resp.get("LikesafterCommand", 0)
                 added = api_resp.get("LikesGivenByAPI", 0)
