@@ -62,7 +62,6 @@ async def like_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return
 
     try:
-asyntry:
     region = "ind"  # Or get from args[1]
     info = requests.get(PLAYER_INFO_API.format(uid=uid, region=region), timeout=5).json()
     player_name = info.get("name", f"Player-{uid[-4:]}")
