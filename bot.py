@@ -130,9 +130,10 @@ async def process_verified_likes(app: Application):
                     remaining = timedelta(hours=24) - elapsed
                     hours, remainder = divmod(remaining.seconds, 3600)
                     minutes = remainder // 60
-                    result = f"❌ *Daily Limit Reached*
-
-⏳ Try again after: {hours}h {minutes}m"
+                    result = (
+    f"❌ *Daily Limit Reached*\n\n"
+    f"⏳ Try again after: {hours}h {minutes}m"
+)
                     await app.bot.send_message(
                         chat_id=user['chat_id'],
                         reply_to_message_id=user['message_id'],
